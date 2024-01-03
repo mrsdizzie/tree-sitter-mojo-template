@@ -1,0 +1,178 @@
+{
+  "name": "mojo_template",
+  "rules": {
+    "template": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "shorthand_code"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "shorthand_comment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "bracketed_code"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "bracketed_comment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "content"
+          }
+        ]
+      }
+    },
+    "bracketed_code": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "<%"
+            },
+            {
+              "type": "STRING",
+              "value": "<%="
+            },
+            {
+              "type": "STRING",
+              "value": "<%=="
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "code"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "%>"
+            },
+            {
+              "type": "STRING",
+              "value": "=%>"
+            }
+          ]
+        }
+      ]
+    },
+    "bracketed_comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<%#"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "code"
+              },
+              "named": true,
+              "value": "comment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "%>"
+        }
+      ]
+    },
+    "shorthand_code": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "%"
+            },
+            {
+              "type": "STRING",
+              "value": "%="
+            },
+            {
+              "type": "STRING",
+              "value": "%=="
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "percent_code"
+        }
+      ]
+    },
+    "shorthand_comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "%#"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "percent_code"
+          },
+          "named": true,
+          "value": "comment"
+        }
+      ]
+    },
+    "percent_code": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[^%\\n]*"
+        }
+      ]
+    },
+    "code": {
+      "type": "PATTERN",
+      "value": "[^%=\\n]+|%%>"
+    },
+    "content": {
+      "type": "PATTERN",
+      "value": "[^<%]+|<[^%]"
+    }
+  },
+  "extras": [],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+

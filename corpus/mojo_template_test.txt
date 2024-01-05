@@ -80,3 +80,23 @@ Content
   (bracketed_code
 	(code))
   (content))
+  
+=================================
+Mixed Content
+=================================
+<!DOCTYPE html>
+<html lang="en">
+  <head><% say $title%></head>
+  <body>
+  Hello % say $name; <bogus not content>
+  </body>
+</html>
+---
+(template
+(content)
+(bracketed_code
+  (code))
+(content)
+(shorthand_code
+  (percent_code))
+(content))

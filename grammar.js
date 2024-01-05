@@ -10,7 +10,6 @@ module.exports = grammar({
       $.content
     )),
 
-
     bracketed_code: $ => seq(
       choice('<%', '<%=', '<%=='),
       optional($.code),
@@ -37,8 +36,8 @@ module.exports = grammar({
       /[^%\n]*/ // Capture everything until the end of the line as code
     ),
 
-    code: $ => /[^%=\n]+|%%>/, // Capture code inside directives
+    code: $ => repeat1(choice(/[^%=_-]+|[%=_-]/, '%%>')),
 
-    content: $ => /[^<%]+|<[^%]/, // Capture everything else as content
+    content: $ => /(?:[^<%]+|<[^%])*?/,
   }
 });

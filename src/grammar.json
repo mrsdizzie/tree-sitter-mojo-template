@@ -160,12 +160,24 @@
       ]
     },
     "code": {
-      "type": "PATTERN",
-      "value": "[^%=\\n]+|%%>"
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^%=_-]+|[%=_-]"
+          },
+          {
+            "type": "STRING",
+            "value": "%%>"
+          }
+        ]
+      }
     },
     "content": {
       "type": "PATTERN",
-      "value": "[^<%]+|<[^%]"
+      "value": "(?:[^<%]+|<[^%])*?"
     }
   },
   "extras": [],

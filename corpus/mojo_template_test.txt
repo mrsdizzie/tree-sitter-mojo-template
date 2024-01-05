@@ -1,0 +1,82 @@
+=================================
+Bracketed Code
+=================================
+<% my $var = 1; %>
+---
+(template
+  (bracketed_code
+	(code)))
+=================================
+Bracketed Code 2
+=================================
+<%= "Hello, World!" %>
+---
+(template
+  (bracketed_code
+	(code)))
+=================================
+Bracketed Code 3
+=================================
+<%== b('<div>excluded!</div>') %>
+---
+(template
+  (bracketed_code
+	(code)))
+
+=================================
+Bracketed Comment
+=================================
+<%# This is a comment %>
+---
+(template
+  (bracketed_comment
+	(comment)))
+
+=================================
+Shorthand Code
+=================================
+% say $mt->render(<<'EOF', [1 .. 13], 'Hello World!');
+---
+(template
+  (shorthand_code
+	(percent_code)))
+=================================
+Shorthand Code 2
+=================================
+%= "Hello, World!";
+---
+(template
+  (shorthand_code
+	(percent_code)))
+=================================
+Shorthand Code 3
+=================================
+%== "Hello, World!";
+---
+(template
+  (shorthand_code
+	(percent_code)))
+
+=================================
+Shorthand Comment
+=================================
+%# This is a comment
+---
+(template
+  (shorthand_comment
+	(comment)))
+
+=================================
+Content
+=================================
+<!DOCTYPE html>
+<html lang="en">
+  <head><% say $title%></head>
+  <body></body>
+</html>
+---
+(template
+  (content)
+  (bracketed_code
+	(code))
+  (content))

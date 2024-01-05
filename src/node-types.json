@@ -30,6 +30,11 @@
     }
   },
   {
+    "type": "code",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "comment",
     "named": true,
     "fields": {}
@@ -109,6 +114,10 @@
     "named": false
   },
   {
+    "type": "%%>",
+    "named": false
+  },
+  {
     "type": "%=",
     "named": false
   },
@@ -139,10 +148,6 @@
   {
     "type": "=%>",
     "named": false
-  },
-  {
-    "type": "code",
-    "named": true
   },
   {
     "type": "content",

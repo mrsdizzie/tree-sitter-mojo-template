@@ -8,7 +8,15 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "shorthand_code"
+            "name": "shorthand_perl_code"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "shorthand_perl_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "shorthand_perl_expression_escaped"
           },
           {
             "type": "SYMBOL",
@@ -16,7 +24,15 @@
           },
           {
             "type": "SYMBOL",
-            "name": "bracketed_code"
+            "name": "bracketed_perl_code"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "bracketed_perl_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "bracketed_perl_expression_escaped"
           },
           {
             "type": "SYMBOL",
@@ -29,23 +45,22 @@
         ]
       }
     },
-    "bracketed_code": {
+    "bracketed_perl_code": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "STRING",
+          "value": "<%"
+        },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "<%"
+              "type": "SYMBOL",
+              "name": "perl_code"
             },
             {
-              "type": "STRING",
-              "value": "<%="
-            },
-            {
-              "type": "STRING",
-              "value": "<%=="
+              "type": "BLANK"
             }
           ]
         },
@@ -53,8 +68,64 @@
           "type": "CHOICE",
           "members": [
             {
+              "type": "STRING",
+              "value": "%>"
+            },
+            {
+              "type": "STRING",
+              "value": "=%>"
+            }
+          ]
+        }
+      ]
+    },
+    "bracketed_perl_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<%="
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "SYMBOL",
-              "name": "code"
+              "name": "perl_code"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "%>"
+            },
+            {
+              "type": "STRING",
+              "value": "=%>"
+            }
+          ]
+        }
+      ]
+    },
+    "bracketed_perl_expression_escaped": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<%=="
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "perl_code"
             },
             {
               "type": "BLANK"
@@ -90,7 +161,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
-                "name": "code"
+                "name": "perl_code"
               },
               "named": true,
               "value": "comment"
@@ -106,29 +177,42 @@
         }
       ]
     },
-    "shorthand_code": {
+    "shorthand_perl_code": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "%"
-            },
-            {
-              "type": "STRING",
-              "value": "%="
-            },
-            {
-              "type": "STRING",
-              "value": "%=="
-            }
-          ]
+          "type": "STRING",
+          "value": "%"
         },
         {
           "type": "SYMBOL",
-          "name": "percent_code"
+          "name": "perl_code"
+        }
+      ]
+    },
+    "shorthand_perl_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "%="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "perl_code"
+        }
+      ]
+    },
+    "shorthand_perl_expression_escaped": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "%=="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "perl_code"
         }
       ]
     },
@@ -143,34 +227,29 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "percent_code"
+            "name": "perl_code"
           },
           "named": true,
           "value": "comment"
         }
       ]
     },
-    "percent_code": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[^%\\n]*"
-        }
-      ]
-    },
-    "code": {
+    "perl_code": {
       "type": "REPEAT1",
       "content": {
         "type": "CHOICE",
         "members": [
           {
             "type": "PATTERN",
-            "value": "[^%=_-]+|[%=_-]"
+            "value": "[^%\\n]+"
           },
           {
-            "type": "STRING",
-            "value": "%%>"
+            "type": "PATTERN",
+            "value": "%"
+          },
+          {
+            "type": "PATTERN",
+            "value": "%>"
           }
         ]
       }

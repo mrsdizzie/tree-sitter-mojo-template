@@ -3,41 +3,67 @@ module.exports = grammar({
   extras: $ => [],
   rules: {
     template: $ => repeat(choice(
-      $.shorthand_code,
+      $.shorthand_perl_code,
+      $.shorthand_perl_expression,
+      $.shorthand_perl_expression_escaped,
       $.shorthand_comment,
-      $.bracketed_code,
+      $.bracketed_perl_code,
+      $.bracketed_perl_expression,
+      $.bracketed_perl_expression_escaped,
       $.bracketed_comment,
       $.content
     )),
 
-    bracketed_code: $ => seq(
-      choice('<%', '<%=', '<%=='),
-      optional($.code),
+    bracketed_perl_code: $ => seq(
+      '<%',
+      optional($.perl_code),
+      choice('%>', '=%>'),
+    ),
+    
+    bracketed_perl_expression: $ => seq(
+      '<%=',
+      optional($.perl_code),
+      choice('%>', '=%>'),
+    ),
+    
+    bracketed_perl_expression_escaped: $ => seq(
+      '<%==',
+      optional($.perl_code),
       choice('%>', '=%>'),
     ),
 
     bracketed_comment: $ => seq(
       '<%#',
-      optional(alias($.code, $.comment)),
+      optional(alias($.perl_code, $.comment)),
       '%>'
     ),
 
-   shorthand_code: $ => seq(
-      choice('%', '%=', '%=='),
-      $.percent_code
+    shorthand_perl_code: $ => seq(
+      '%',
+      $.perl_code
+    ),
+    
+    shorthand_perl_expression: $ => seq(
+      '%=',
+      $.perl_code
+    ),
+    
+    shorthand_perl_expression_escaped: $ => seq(
+      '%==',
+      $.perl_code
     ),
     
     shorthand_comment: $ => seq(
       '%#',
-      alias($.percent_code, $.comment),
+      alias($.perl_code, $.comment),
     ),
-
-    percent_code: $ => seq(
-      /[^%\n]*/ // Capture everything until the end of the line as code
-    ),
-
-    code: $ => repeat1(choice(/[^%=_-]+|[%=_-]/, '%%>')),
-
+    
+    perl_code: $ => repeat1(choice(
+        /[^%\n]+/,
+        /%/,
+        /%>/
+    )),
+    
     content: $ => /(?:[^<%]+|<[^%])*?/,
   }
 });

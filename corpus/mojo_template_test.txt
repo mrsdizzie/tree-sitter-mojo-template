@@ -4,24 +4,24 @@ Bracketed Code
 <% my $var = 1; %>
 ---
 (template
-  (bracketed_code
-	(code)))
+  (bracketed_perl_code
+	(perl_code)))
 =================================
-Bracketed Code 2
+Bracketed Code 2 perl expression
 =================================
 <%= "Hello, World!" %>
 ---
 (template
-  (bracketed_code
-	(code)))
+  (bracketed_perl_expression
+	(perl_code)))
 =================================
-Bracketed Code 3
+Bracketed Code 3 perl expression escaped
 =================================
 <%== b('<div>excluded!</div>') %>
 ---
 (template
-  (bracketed_code
-	(code)))
+  (bracketed_perl_expression_escaped
+	(perl_code)))
 
 =================================
 Bracketed Comment
@@ -38,24 +38,24 @@ Shorthand Code
 % say $mt->render(<<'EOF', [1 .. 13], 'Hello World!');
 ---
 (template
-  (shorthand_code
-	(percent_code)))
+  (shorthand_perl_code
+	(perl_code)))
 =================================
-Shorthand Code 2
+Shorthand Code 2 perl expression
 =================================
 %= "Hello, World!";
 ---
 (template
-  (shorthand_code
-	(percent_code)))
+  (shorthand_perl_expression
+	(perl_code)))
 =================================
-Shorthand Code 3
+Shorthand Code 3 perl expression escaped
 =================================
 %== "Hello, World!";
 ---
 (template
-  (shorthand_code
-	(percent_code)))
+  (shorthand_perl_expression_escaped
+	(perl_code)))
 
 =================================
 Shorthand Comment
@@ -77,8 +77,8 @@ Content
 ---
 (template
   (content)
-  (bracketed_code
-	(code))
+  (bracketed_perl_code
+	(perl_code))
   (content))
   
 =================================
@@ -94,9 +94,9 @@ Mixed Content
 ---
 (template
 (content)
-(bracketed_code
-  (code))
+(bracketed_perl_code
+  (perl_code))
 (content)
-(shorthand_code
-  (percent_code))
+(shorthand_perl_code
+  (perl_code))
 (content))

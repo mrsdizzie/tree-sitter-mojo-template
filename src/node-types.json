@@ -1,20 +1,5 @@
 [
   {
-    "type": "bracketed_code",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "code",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "bracketed_comment",
     "named": true,
     "fields": {},
@@ -30,9 +15,49 @@
     }
   },
   {
-    "type": "code",
+    "type": "bracketed_perl_code",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "perl_code",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bracketed_perl_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "perl_code",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bracketed_perl_expression_escaped",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "perl_code",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "comment",
@@ -40,24 +65,9 @@
     "fields": {}
   },
   {
-    "type": "percent_code",
+    "type": "perl_code",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "shorthand_code",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "percent_code",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "shorthand_comment",
@@ -75,6 +85,51 @@
     }
   },
   {
+    "type": "shorthand_perl_code",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "perl_code",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "shorthand_perl_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "perl_code",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "shorthand_perl_expression_escaped",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "perl_code",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "template",
     "named": true,
     "fields": {},
@@ -83,11 +138,19 @@
       "required": false,
       "types": [
         {
-          "type": "bracketed_code",
+          "type": "bracketed_comment",
           "named": true
         },
         {
-          "type": "bracketed_comment",
+          "type": "bracketed_perl_code",
+          "named": true
+        },
+        {
+          "type": "bracketed_perl_expression",
+          "named": true
+        },
+        {
+          "type": "bracketed_perl_expression_escaped",
           "named": true
         },
         {
@@ -95,11 +158,19 @@
           "named": true
         },
         {
-          "type": "shorthand_code",
+          "type": "shorthand_comment",
           "named": true
         },
         {
-          "type": "shorthand_comment",
+          "type": "shorthand_perl_code",
+          "named": true
+        },
+        {
+          "type": "shorthand_perl_expression",
+          "named": true
+        },
+        {
+          "type": "shorthand_perl_expression_escaped",
           "named": true
         }
       ]
@@ -111,10 +182,6 @@
   },
   {
     "type": "%#",
-    "named": false
-  },
-  {
-    "type": "%%>",
     "named": false
   },
   {

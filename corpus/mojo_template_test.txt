@@ -22,7 +22,30 @@ Bracketed Code 3 perl expression escaped
 (template
   (bracketed_perl_expression_escaped
 	(perl_code)))
-
+=================================
+Bracketed Code 4 perl expression escaped trim newline
+=================================
+<%== 'an equals before the closing tag means to trim Whitespace characters around tags' =%>
+---
+(template
+  (bracketed_perl_expression_escaped
+  (perl_code)))
+=================================
+Bracketed Code 5 allow = as part of code
+=================================
+<%== $say '2+2 = 4' =%>
+---
+(template
+	(bracketed_perl_expression_escaped
+	(perl_code)))
+=================================
+Bracketed Code 6 allow % as part of code
+=================================
+<%== my %test = (); =%>
+---
+(template
+	(bracketed_perl_expression_escaped
+	(perl_code)))
 =================================
 Bracketed Comment
 =================================
@@ -39,7 +62,7 @@ Shorthand Code
 ---
 (template
   (shorthand_perl_code
-	(perl_code)))
+	(short_perl_code)))
 =================================
 Shorthand Code 2 perl expression
 =================================
@@ -47,7 +70,7 @@ Shorthand Code 2 perl expression
 ---
 (template
   (shorthand_perl_expression
-	(perl_code)))
+	(short_perl_code)))
 =================================
 Shorthand Code 3 perl expression escaped
 =================================
@@ -55,7 +78,23 @@ Shorthand Code 3 perl expression escaped
 ---
 (template
   (shorthand_perl_expression_escaped
-	(perl_code)))
+	(short_perl_code)))
+=================================
+Shorthand Code 4 allow % character
+=================================
+% my %test = ();
+---
+(template
+	(shorthand_perl_code
+	(short_perl_code)))
+=================================
+Shorthand Code 5 pathological %= as part of code
+=================================
+% my $string = 'test%=test';
+---
+(template
+	(shorthand_perl_code
+	(short_perl_code)))
 
 =================================
 Shorthand Comment
@@ -98,5 +137,5 @@ Mixed Content
   (perl_code))
 (content)
 (shorthand_perl_code
-  (perl_code))
+  (short_perl_code))
 (content))

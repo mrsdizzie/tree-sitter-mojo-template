@@ -186,7 +186,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "perl_code"
+          "name": "short_perl_code"
         }
       ]
     },
@@ -199,7 +199,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "perl_code"
+          "name": "short_perl_code"
         }
       ]
     },
@@ -212,7 +212,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "perl_code"
+          "name": "short_perl_code"
         }
       ]
     },
@@ -250,6 +250,22 @@
           {
             "type": "PATTERN",
             "value": "%>"
+          },
+          {
+            "type": "PATTERN",
+            "value": "%=[^>]"
+          }
+        ]
+      }
+    },
+    "short_perl_code": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^\\n]+"
           }
         ]
       }

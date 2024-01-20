@@ -40,19 +40,19 @@ module.exports = grammar({
 
     shorthand_perl_code: $ => seq(
       '%',
-      $.perl_code
+      $.short_perl_code
     ),
     
     shorthand_perl_expression: $ => seq(
       '%=',
-      $.perl_code
+      $.short_perl_code
     ),
     
     shorthand_perl_expression_escaped: $ => seq(
       '%==',
-      $.perl_code
+      $.short_perl_code
     ),
-    
+   
     shorthand_comment: $ => seq(
       '%#',
       alias($.perl_code, $.comment),
@@ -61,7 +61,11 @@ module.exports = grammar({
     perl_code: $ => repeat1(choice(
         /[^%\n]+/,
         /%/,
-        /%>/
+        /%>/,
+        /%=[^>]/
+    )),
+    short_perl_code: $ => repeat1(choice(
+        /[^\n]+/
     )),
     
     content: $ => /(?:[^<%]+|<[^%])*?/,
